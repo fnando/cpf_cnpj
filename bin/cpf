@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require "cpf_cnpj"
+CPF::CLI.new(ARGV, STDIN, STDOUT, STDERR).start
