@@ -47,11 +47,12 @@ describe CPF do
     expect(cpf.formatted).to eql("295.379.955-93")
   end
 
-  it "generates number" do
-    CPF::Generator
-      .should_receive(:generate)
+  it "generates formatted number" do
+    expect(CPF.generate(true)).to match(/\A\d{3}\.\d{3}\.\d{3}-\d{2}\z/)
+  end
 
-    CPF.generate
+  it "generates stripped number" do
+    expect(CPF.generate).to match(/\A\d{11}\z/)
   end
 
   context "memoization" do

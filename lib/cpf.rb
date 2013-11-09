@@ -26,8 +26,9 @@ class CPF
     new(number).valid?
   end
 
-  def self.generate
-    Generator.generate
+  def self.generate(formatted = false)
+    cpf = new(Generator.generate)
+    formatted ? cpf.formatted : cpf.stripped
   end
 
   def initialize(number)
