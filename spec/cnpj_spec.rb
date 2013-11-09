@@ -35,4 +35,12 @@ describe CNPJ do
     number = "54550[752#0001..$55"
     expect(CNPJ).to be_valid(number)
   end
+
+  it "generates formatted number" do
+    expect(CNPJ.generate(true)).to match(%r[\A\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}\z])
+  end
+
+  it "generates stripped number" do
+    expect(CNPJ.generate).to match(/\A\d{14}\z/)
+  end
 end

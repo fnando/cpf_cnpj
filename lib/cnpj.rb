@@ -25,8 +25,9 @@ class CNPJ
     new(number).valid?
   end
 
-  def self.generate
-    Generator.generate
+  def self.generate(formatted = false)
+    cnpj = new(Generator.generate)
+    formatted ? cnpj.formatted : cnpj.stripped
   end
 
   def initialize(number)
