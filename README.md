@@ -28,6 +28,7 @@ This library has the same API for both CNPJ/CPF, so only one of them is document
 
     CPF.valid?(number)    # Check if a CPF is valid
     CPF.generate          # Generate a random CPF number
+    CPF.generate(true)    # Generate a formatted number
 
     cpf = CPF.new(number)
     cpf.formatted         # Return formatted CPF (xxx.xxx.xxx-xx)
