@@ -1,8 +1,8 @@
 class CNPJ
-  autoload :CLI, "cnpj/cli"
-  autoload :Formatter, "cnpj/formatter"
-  autoload :Generator, "cnpj/generator"
-  autoload :VerifierDigit, "cnpj/verifier_digit"
+  require "cnpj/cli"
+  require "cnpj/formatter"
+  require "cnpj/generator"
+  require "cnpj/verifier_digit"
 
   attr_reader :number
 

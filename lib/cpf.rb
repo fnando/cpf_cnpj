@@ -1,8 +1,8 @@
 class CPF
-  autoload :CLI, "cpf/cli"
-  autoload :Formatter, "cpf/formatter"
-  autoload :Generator, "cpf/generator"
-  autoload :VerifierDigit, "cpf/verifier_digit"
+  require "cpf/cli"
+  require "cpf/formatter"
+  require "cpf/generator"
+  require "cpf/verifier_digit"
 
   attr_reader :number
 
