@@ -3,7 +3,7 @@ class CPF
     def self.generate(numbers)
       modulus = numbers.size + 1
 
-      multiplied = numbers.map.with_index do |number, index|
+      multiplied = numbers.map.each_with_index do |number, index|
         number * (modulus - index)
       end
 
