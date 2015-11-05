@@ -61,6 +61,11 @@ class CPF
     _numbers[-2, 2] == numbers[-2, 2]
   end
 
+  # validates_associated in the parent model requires the existence of this method
+  def marked_for_destruction?
+    false
+  end
+
   private
   def numbers
     @numbers ||= stripped.each_char.to_a.map(&:to_i)
