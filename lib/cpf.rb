@@ -66,6 +66,8 @@ class CPF
     false
   end
 
+  alias_method :to_s, :formatted
+
   private
   def numbers
     @numbers ||= stripped.each_char.to_a.map(&:to_i)
