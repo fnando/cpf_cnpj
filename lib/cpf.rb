@@ -51,8 +51,8 @@ class CPF
   end
 
   def valid?
-    return unless stripped.size == 11
-    return if BLACKLIST.include?(stripped)
+    return false unless stripped.size == 11
+    return false if BLACKLIST.include?(stripped)
 
     _numbers = numbers[0...9]
     _numbers << VerifierDigit.generate(_numbers)
