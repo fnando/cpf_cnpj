@@ -32,7 +32,7 @@ class CPF
   end
 
   def initialize(number)
-    @number = number.to_s
+    @number = number.to_s.gsub(/\D/, '')
   end
 
   def number=(number)
