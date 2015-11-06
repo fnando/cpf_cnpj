@@ -66,7 +66,11 @@ class CPF
     false
   end
 
+  # HTML views
   alias_method :to_s, :formatted
+
+  # JSON views
+  delegate :as_json, to: :number
 
   private
   def numbers
