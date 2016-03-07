@@ -1,5 +1,9 @@
 # CPF/CNPJ
 
+[![Build Status](https://travis-ci.org/fnando/cpf_cnpj.svg)](https://travis-ci.org/fnando/cpf_cnpj)
+[![Code Climate](https://codeclimate.com/github/fnando/cpf_cnpj/badges/gpa.svg)](https://codeclimate.com/github/fnando/cpf_cnpj)
+[![Gem Version](https://badge.fury.io/rb/cpf_cnpj.svg)](http://badge.fury.io/rb/cpf_cnpj)
+
 This gem does some [CPF](http://en.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%ADsicas)/[CNPJ](http://en.wikipedia.org/wiki/CNPJ) magic. It allows you to create, validate and format CPF/CNPJ, even through the command-line.
 
 Just making my life easier when filling these damn numbers on internet bankings and government sites.
