@@ -10,6 +10,9 @@ GEM
     coderay (1.1.0)
     diff-lcs (1.2.5)
     method_source (0.8.2)
+    minitest (5.8.4)
+    minitest-utils (0.2.6)
+      minitest
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -24,6 +27,7 @@ GEM
     pry-remote (0.1.8)
       pry (~> 0.9)
       slop (~> 3.0)
+    rake (10.5.0)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
@@ -43,5 +47,10 @@ PLATFORMS
 
 DEPENDENCIES
   cpf_cnpj!
+  minitest-utils
   pry-meta
+  rake
   rspec
+
+BUNDLED WITH
+   1.11.2
