@@ -1,7 +1,11 @@
-class CPF
+module CpfCnpj
   VERSION = "0.2.1"
 end
 
+class CPF
+  VERSION = CpfCnpj::VERSION
+end
+
 class CNPJ
-  VERSION = "0.2.1"
+  VERSION = CpfCnpj::VERSION
 end

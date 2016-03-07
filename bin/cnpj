@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
+$LOAD_PATH.unshift "#{__dir__}/../lib"
 require "cpf_cnpj"
-CNPJ::CLI.new(ARGV, STDIN, STDOUT, STDERR).start
+CpfCnpj::CLI.new(CNPJ, ARGV, STDIN, STDOUT, STDERR).start

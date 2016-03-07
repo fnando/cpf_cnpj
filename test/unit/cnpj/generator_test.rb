@@ -2,10 +2,10 @@ require "test_helper"
 
 class CNPJGeneratorTest < Minitest::Test
   test "generates valid numbers" do
-    100.times { assert CNPJ.valid?(CNPJ::Generator.generate) }
+    10.times { assert CNPJ.valid?(CNPJ.generate) }
   end
 
   test "generates random numbers" do
-    100.times { refute_equal CNPJ::Generator.generate, CNPJ::Generator.generate }
+    10.times { refute_equal CNPJ.generate, CNPJ.generate }
   end
 end

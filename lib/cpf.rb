@@ -1,33 +1,34 @@
 class CPF
-  require "cpf/cli"
+  require "cpf_cnpj"
   require "cpf/formatter"
-  require "cpf/generator"
   require "cpf/verifier_digit"
 
   attr_reader :number
 
   REGEX = /\A\d{3}\.\d{3}\.\d{3}-\d{2}\Z/
+  NUMBER_SIZE = 9
 
-  BLACKLIST = [
-    "00000000000",
-    "11111111111",
-    "22222222222",
-    "33333333333",
-    "44444444444",
-    "55555555555",
-    "66666666666",
-    "77777777777",
-    "88888888888",
-    "99999999999",
-    "12345678909"
-  ]
+  BLACKLIST = %w[
+    00000000000
+    11111111111
+    22222222222
+    33333333333
+    44444444444
+    55555555555
+    66666666666
+    77777777777
+    88888888888
+    99999999999
+    12345678909
+  ].freeze
 
   def self.valid?(number)
     new(number).valid?
   end
 
   def self.generate(formatted = false)
-    cpf = new(Generator.generate)
+    number = CpfCnpj::Generator.generate(NUMBER_SIZE, VerifierDigit)
+    cpf = new(number)
     formatted ? cpf.formatted : cpf.stripped
   end
 
@@ -54,14 +55,15 @@ class CPF
     return unless stripped.size == 11
     return if BLACKLIST.include?(stripped)
 
-    _numbers = numbers[0...9]
-    _numbers << VerifierDigit.generate(_numbers)
-    _numbers << VerifierDigit.generate(_numbers)
+    digits = numbers[0...9]
+    digits << VerifierDigit.generate(digits)
+    digits << VerifierDigit.generate(digits)
 
-    _numbers[-2, 2] == numbers[-2, 2]
+    digits[-2, 2] == numbers[-2, 2]
   end
 
   private
+
   def numbers
     @numbers ||= stripped.each_char.to_a.map(&:to_i)
   end
