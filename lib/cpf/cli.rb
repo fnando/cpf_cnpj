@@ -65,7 +65,8 @@ class CPF
       exit 1
     end
 
-    def check(cpf)
+    # No-op method. CPF is always validated on CPF::CLI#start.
+    def check(_cpf)
       exit
     end
 

@@ -48,7 +48,7 @@ class CNPJ
       opts.parse!(arguments)
       opts.permute!(arguments)
 
-      help and exit(1) if options.empty?
+      help if options.empty?
       generate(options) if options[:generate]
 
       cnpj = CNPJ.new(arguments.first || stdin.read)
@@ -64,7 +64,8 @@ class CNPJ
       exit 1
     end
 
-    def check(cnpj)
+    # No-op method. CPF is always validated on CNPJ::CLI#start.
+    def check(_cnpj)
       exit
     end
 
