@@ -8,6 +8,8 @@ This gem does some [CPF](http://en.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%A
 
 Just making my life easier when filling these damn numbers on internet bankings and government sites.
 
+For ActiveModel/ActiveRecord validations, please check <https://github.com/fnando/validators>.
+
 ## Installation
 
 Add this line to your application's Gemfile:
