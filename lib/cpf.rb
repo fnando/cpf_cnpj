@@ -4,6 +4,7 @@ class CPF
   require "cpf/verifier_digit"
 
   attr_reader :number
+  attr_reader :strict
 
   REGEX = /\A\d{3}\.\d{3}\.\d{3}-\d{2}\Z/
   NUMBER_SIZE = 9
@@ -22,8 +23,8 @@ class CPF
     12345678909
   ].freeze
 
-  def self.valid?(number)
-    new(number).valid?
+  def self.valid?(number, strict: false)
+    new(number, strict).valid?
   end
 
   def self.generate(formatted = false)
@@ -32,8 +33,9 @@ class CPF
     formatted ? cpf.formatted : cpf.stripped
   end
 
-  def initialize(number)
+  def initialize(number, strict = false)
     @number = number.to_s
+    @strict = strict
   end
 
   def number=(number)
@@ -44,14 +46,14 @@ class CPF
   end
 
   def stripped
-    @stripped ||= Formatter.strip(number)
+    @stripped ||= Formatter.strip(number, strict)
   end
 
   def formatted
     @formatted ||= Formatter.format(number)
   end
 
-  def valid?
+  def valid?(strict: false)
     return unless stripped.size == 11
     return if BLACKLIST.include?(stripped)
 

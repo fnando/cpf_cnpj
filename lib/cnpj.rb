@@ -4,6 +4,7 @@ class CNPJ
   require "cnpj/verifier_digit"
 
   attr_reader :number
+  attr_reader :strict
 
   REGEX = /\A\d{2}\.\d{3}.\d{3}\/\d{4}-\d{2}\Z/
   NUMBER_SIZE = 12
@@ -21,8 +22,8 @@ class CNPJ
     9999999999999
   ].freeze
 
-  def self.valid?(number)
-    new(number).valid?
+  def self.valid?(number, strict: false)
+    new(number, strict).valid?
   end
 
   def self.generate(formatted = false)
@@ -31,8 +32,9 @@ class CNPJ
     formatted ? cnpj.formatted : cnpj.stripped
   end
 
-  def initialize(number)
+  def initialize(number, strict = false)
     @number = number.to_s
+    @strict = strict
   end
 
   def number=(number)
@@ -43,7 +45,7 @@ class CNPJ
   end
 
   def stripped
-    @stripped ||= Formatter.strip(number)
+    @stripped ||= Formatter.strip(number, strict)
   end
 
   def formatted

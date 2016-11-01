@@ -30,16 +30,26 @@ Or install it yourself as:
 
 This library has the same API for both CNPJ/CPF, so only one of them is documented below.
 
-    require "cpf_cnpj"
+```ruby
+require "cpf_cnpj"
 
-    CPF.valid?(number)    # Check if a CPF is valid
-    CPF.generate          # Generate a random CPF number
-    CPF.generate(true)    # Generate a formatted number
+CPF.valid?(number)    # Check if a CPF is valid
+CPF.generate          # Generate a random CPF number
+CPF.generate(true)    # Generate a formatted number
 
-    cpf = CPF.new(number)
-    cpf.formatted         # Return formatted CPF (xxx.xxx.xxx-xx)
-    cpf.stripped          # Return stripped CPF (xxxxxxxxxxx)
-    cpf.valid?            # Check if CPF is valid
+cpf = CPF.new(number)
+cpf.formatted         # Return formatted CPF (xxx.xxx.xxx-xx)
+cpf.stripped          # Return stripped CPF (xxxxxxxxxxx)
+cpf.valid?            # Check if CPF is valid
+```
+
+#### Strict Validation
+
+By default, validations will strip any characters that aren't numbers. This means that `532#####820------857\n96` is considered a valid number. To perform a strict validation use `strict: true`.
+
+```ruby
+CPF.valid?(number, strict: true)
+```
 
 ### Command-line
 

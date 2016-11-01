@@ -37,6 +37,12 @@ class CpfTest < Minitest::Test
     assert CPF.valid?(number)
   end
 
+  test "strictly validates strings" do
+    refute CPF.valid?("295$379\n955...93", strict: true)
+    assert CPF.valid?("295.379.955-93", strict: true)
+    assert CPF.valid?("29537995593", strict: true)
+  end
+
   test "returns stripped number" do
     cpf = CPF.new("295.379.955-93")
     assert_equal "29537995593", cpf.stripped
