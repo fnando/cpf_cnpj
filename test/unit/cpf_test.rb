@@ -79,4 +79,15 @@ class CpfTest < Minitest::Test
     assert_equal "52139989171", cpf.stripped
     assert_equal "521.399.891-71", cpf.formatted
   end
+
+  test "compare objects by their numeric value" do
+    one = CPF.new("29537995593")
+    other = CPF.new("29537995593")
+    different = CPF.new("76556868310")
+
+    assert_equal one, other
+
+    refute_equal one, different
+    refute_equal other, different
+  end
 end
