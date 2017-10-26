@@ -7,6 +7,7 @@ class CNPJ
   attr_reader :strict
 
   REGEX = /\A\d{2}\.\d{3}.\d{3}\/\d{4}-\d{2}\Z/
+  VALIDATION_SIZE_REGEX = /^\d{14}$/
   NUMBER_SIZE = 12
 
   BLACKLIST = %w[
@@ -53,7 +54,7 @@ class CNPJ
   end
 
   def valid?
-    return unless stripped.size == 14
+    return unless stripped.match?(VALIDATION_SIZE_REGEX)
     return if BLACKLIST.include?(stripped)
 
     digits = numbers[0...12]

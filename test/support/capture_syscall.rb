@@ -1,3 +1,5 @@
+require "timeout"
+
 module CaptureSyscall
   def capture_syscall
     exit_status = nil

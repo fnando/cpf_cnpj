@@ -43,4 +43,12 @@ class CnpjTest < Minitest::Test
   test "generates stripped number" do
     assert_match /\A\d{14}\z/, CNPJ.generate
   end
+
+  test "rejects strings" do
+    refute CPF.valid?("aa.bb.ccc/dddd-ee")
+  end
+
+  test "rejects strings (strict)" do
+    refute CPF.valid?("aa.bb.ccc/dddd-ee", strict: true)
+  end
 end

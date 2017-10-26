@@ -7,6 +7,7 @@ class CPF
   attr_reader :strict
 
   REGEX = /\A\d{3}\.\d{3}\.\d{3}-\d{2}\Z/
+  VALIDATION_SIZE_REGEX = /^[0-9]{11}$/
   NUMBER_SIZE = 9
 
   BLACKLIST = %w[
@@ -53,8 +54,8 @@ class CPF
     @formatted ||= Formatter.format(number)
   end
 
-  def valid?(strict: false)
-    return unless stripped.size == 11
+  def valid?
+    return unless stripped.match?(VALIDATION_SIZE_REGEX)
     return if BLACKLIST.include?(stripped)
 
     digits = numbers[0...9]

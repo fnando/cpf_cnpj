@@ -1,5 +1,4 @@
-require "bundler"
-Bundler.setup
+require "bundler/setup"
 Bundler.require
 
 require "minitest/utils"

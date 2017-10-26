@@ -18,6 +18,10 @@ class CpfTest < Minitest::Test
     refute CPF.valid?("")
   end
 
+  test "rejects strings" do
+    refute CPF.valid?("aaa.bbb.ccc-dd")
+  end
+
   test "rejects nil values" do
     refute CPF.valid?(nil)
   end
@@ -41,6 +45,10 @@ class CpfTest < Minitest::Test
     refute CPF.valid?("295$379\n955...93", strict: true)
     assert CPF.valid?("295.379.955-93", strict: true)
     assert CPF.valid?("29537995593", strict: true)
+  end
+
+  test "rejects strings (strict)" do
+    refute CPF.valid?("aaa.bbb.ccc-dd", strict: true)
   end
 
   test "returns stripped number" do
