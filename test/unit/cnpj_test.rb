@@ -48,10 +48,10 @@ class CnpjTest < Minitest::Test
   end
 
   test "rejects strings" do
-    refute CPF.valid?("aa.bb.ccc/dddd-ee")
+    refute CNPJ.valid?("aa.bb.ccc/dddd-ee")
   end
 
   test "rejects strings (strict)" do
-    refute CPF.valid?("aa.bb.ccc/dddd-ee", strict: true)
+    refute CNPJ.valid?("aa.bb.ccc/dddd-ee", strict: true)
   end
 end
