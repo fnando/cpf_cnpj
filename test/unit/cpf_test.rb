@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class CpfTest < Minitest::Test
@@ -63,11 +65,11 @@ class CpfTest < Minitest::Test
   end
 
   test "generates formatted number" do
-    assert_match /\A\d{3}\.\d{3}\.\d{3}-\d{2}\z/, CPF.generate(true)
+    assert_match(/\A\d{3}\.\d{3}\.\d{3}-\d{2}\z/, CPF.generate(true))
   end
 
   test "generates stripped number" do
-    assert_match /\A\d{11}\z/, CPF.generate
+    assert_match(/\A\d{11}\z/, CPF.generate)
   end
 
   test "invalidates memoization cache" do

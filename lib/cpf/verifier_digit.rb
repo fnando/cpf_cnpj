@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CPF
   class VerifierDigit
     def self.generate(numbers)

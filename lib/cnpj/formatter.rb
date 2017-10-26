@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CNPJ
   class Formatter
-    STRICT_REGEX = /[\/.-]/
+    STRICT_REGEX = %r[[/.-]]
     LOOSE_REGEX = /[^\d]/
 
     def self.format(number)

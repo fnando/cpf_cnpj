@@ -1,5 +1,6 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path("../lib/cpf_cnpj/version", __FILE__)
+# frozen_string_literal: true
+
+require "./lib/cpf_cnpj/version"
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Nando Vieira"]
@@ -7,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.description   = "Validate, generate and format CPF/CNPJ numbers. Include command-line tools."
   gem.summary       = gem.description
 
-  gem.files         = `git ls-files`.split($\)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.files         = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
+  gem.executables   = gem.files.grep(%r[^bin/]).map {|f| File.basename(f) }
+  gem.test_files    = gem.files.grep(%r[^(test|spec|features)/])
   gem.name          = "cpf_cnpj"
   gem.require_paths = ["lib"]
   gem.version       = CPF::VERSION

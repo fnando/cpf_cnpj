@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CPF
   require "cpf_cnpj"
   require "cpf/formatter"

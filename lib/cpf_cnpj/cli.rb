@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CpfCnpj
   class CLI
     attr_reader :document_class, :arguments, :stdin, :stdout, :stderr
@@ -18,9 +20,12 @@ module CpfCnpj
       document_class.name
     end
 
-    def start
-      options = {}
+    def options
+      @options ||= {}
+    end
 
+    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    def process_command
       opts.banner = "Usage: #{bin_name} [options] [#{document_name} number]"
       opts.separator ""
       opts.separator "Specific options:"
@@ -47,21 +52,27 @@ module CpfCnpj
       end
 
       opts.on_tail("-h", "--help", "Show help") do
-        help
-        exit
+        help(true)
       end
 
       opts.parse!(arguments)
       opts.permute!(arguments)
+    end
+    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
-      help if options.empty?
-      generate(options) if options[:generate]
-      input = stdin.tty? ? arguments.first : stdin.read
+    def input
+      stdin.tty? ? arguments.first : stdin.read
+    end
+
+    def start
+      process_command
+      help
+      generate(options)
       document = document_class.new(input)
       validate(document)
-      format(document) if options[:format]
-      strip(document) if options[:strip]
-      check(document) if options[:check]
+      format(document)
+      strip(document)
+      check(document)
     end
 
     def validate(document)
@@ -76,28 +87,38 @@ module CpfCnpj
     end
 
     def generate(options)
+      return unless options[:generate]
+
       document = document_class.new(document_class.generate)
 
-      if options[:strip]
-        stdout << document.stripped
-      else
-        stdout << document.formatted
-      end
+      output =  if options[:strip]
+                  document.stripped
+                else
+                  document.formatted
+                end
+
+      stdout << output
 
       exit
     end
 
     def format(document)
+      return unless options[:format]
+
       stdout << document.formatted
       exit
     end
 
     def strip(document)
+      return unless options[:strip]
+
       stdout << document.stripped
       exit
     end
 
-    def help
+    def help(run = options.empty?)
+      return unless run
+
       stderr << opts.to_s
       exit 1
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 module CPFCli
@@ -54,7 +56,7 @@ module CPFCli
 
     %w[-v --version].each do |switch|
       test "outputs version [using #{switch}]" do
-        exit_status, stdout, stderr = capture_syscall do
+        exit_status, stdout, _stderr = capture_syscall do
           system "./bin/cpf #{switch}"
         end
 
@@ -84,7 +86,7 @@ module CPFCli
       end
 
       assert_equal 0, exit_status
-      assert_match /\A\d{11}\Z/, stdout
+      assert_match(/\A\d{11}\Z/, stdout)
     end
   end
 
@@ -103,8 +105,6 @@ module CPFCli
     end
 
     test "formats argument using stdin" do
-      stdin = StringIO.new("76616598837")
-
       exit_status, stdout = capture_syscall do
         system "echo 76616598837 | ./bin/cpf --format"
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 module CNPJCli
@@ -84,7 +86,7 @@ module CNPJCli
       end
 
       assert_equal 0, exit_status
-      assert_match /\A\d{14}\Z/, stdout
+      assert_match(/\A\d{14}\Z/, stdout)
     end
   end
 

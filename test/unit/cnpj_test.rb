@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class CnpjTest < Minitest::Test
@@ -42,7 +44,7 @@ class CnpjTest < Minitest::Test
   end
 
   test "generates stripped number" do
-    assert_match /\A\d{14}\z/, CNPJ.generate
+    assert_match(/\A\d{14}\z/, CNPJ.generate)
   end
 
   test "rejects strings" do

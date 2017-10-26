@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "English"
 require "optparse"
 require "cpf_cnpj/generator"

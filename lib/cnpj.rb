@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CNPJ
   require "cpf_cnpj"
   require "cnpj/formatter"
@@ -6,7 +8,7 @@ class CNPJ
   attr_reader :number
   attr_reader :strict
 
-  REGEX = /\A\d{2}\.\d{3}.\d{3}\/\d{4}-\d{2}\Z/
+  REGEX = %r[\A\d{2}\.\d{3}.\d{3}/\d{4}-\d{2}\Z]
   VALIDATION_SIZE_REGEX = /^\d{14}$/
   NUMBER_SIZE = 12
 

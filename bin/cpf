@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 $LOAD_PATH.unshift "#{__dir__}/../lib"
 require "cpf_cnpj"
 CpfCnpj::CLI.new(CPF, ARGV, STDIN, STDOUT, STDERR).start
