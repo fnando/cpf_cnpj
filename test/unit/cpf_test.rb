@@ -2,6 +2,7 @@ require "test_helper"
 
 class CpfTest < Minitest::Test
   test "blacklists common numbers" do
+    refute CPF.valid?("01234567890")
     refute CPF.valid?("11111111111")
     refute CPF.valid?("22222222222")
     refute CPF.valid?("33333333333")

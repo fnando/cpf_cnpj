@@ -2,6 +2,7 @@ require "test_helper"
 
 class CnpjTest < Minitest::Test
   test "blacklists common numbers" do
+    refute CNPJ.valid?("00000000000000")
     refute CNPJ.valid?("11111111111111")
     refute CNPJ.valid?("22222222222222")
     refute CNPJ.valid?("33333333333333")
