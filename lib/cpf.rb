@@ -54,7 +54,7 @@ class CPF
   end
 
   def valid?(strict: false)
-    return unless stripped.size == 11
+    return if stripped.size != 11 || number.match?(/\p{L}/)
     return if BLACKLIST.include?(stripped)
 
     digits = numbers[0...9]
