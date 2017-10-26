@@ -58,7 +58,7 @@ class CPF
   end
 
   def valid?
-    return unless stripped.match?(VALIDATION_SIZE_REGEX)
+    return unless stripped =~ VALIDATION_SIZE_REGEX
     return if BLACKLIST.include?(stripped)
 
     digits = numbers[0...9]
