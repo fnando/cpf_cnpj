@@ -17,6 +17,11 @@ class CpfTest < Minitest::Test
   test "rejects blank strings" do
     refute CPF.valid?("")
   end
+  
+  test "rejects strings with letters" do
+    refute CPF.valid?("abc")
+    refute CPF.valid?("abc", strict: true)
+  end
 
   test "rejects nil values" do
     refute CPF.valid?(nil)
