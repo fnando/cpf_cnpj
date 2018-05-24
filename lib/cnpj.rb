@@ -66,6 +66,11 @@ class CNPJ
     digits[-2, 2] == numbers[-2, 2]
   end
 
+  def ==(object)
+    super || object.instance_of?(self.class) && object.stripped == stripped
+  end
+  alias :eql? :==
+
   private
 
   def numbers
