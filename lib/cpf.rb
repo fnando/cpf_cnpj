@@ -5,11 +5,10 @@ class CPF
   require "cpf/formatter"
   require "cpf/verifier_digit"
 
-  attr_reader :number
-  attr_reader :strict
+  attr_reader :number, :strict
 
-  REGEX = /\A\d{3}\.\d{3}\.\d{3}-\d{2}\Z/
-  VALIDATION_SIZE_REGEX = /^[0-9]{11}$/
+  REGEX = /\A\d{3}\.\d{3}\.\d{3}-\d{2}\Z/.freeze
+  VALIDATION_SIZE_REGEX = /^[0-9]{11}$/.freeze
   NUMBER_SIZE = 9
 
   BLACKLIST = %w[
@@ -68,14 +67,12 @@ class CPF
     digits[-2, 2] == numbers[-2, 2]
   end
 
-  def ==(object)
-    super || object.instance_of?(self.class) && object.stripped == stripped
+  def ==(other)
+    super || other.instance_of?(self.class) && other.stripped == stripped
   end
-  alias :eql? :==
+  alias eql? ==
 
-  private
-
-  def numbers
+  private def numbers
     @numbers ||= stripped.each_char.to_a.map(&:to_i)
   end
 end

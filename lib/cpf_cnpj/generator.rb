@@ -2,7 +2,7 @@
 
 module CpfCnpj
   class Generator
-    NUMBERS = [*0..9].freeze
+    NUMBERS = Array(0..9).freeze
 
     def self.generate(size, verifier_digit_generator)
       numbers = Array.new(size) { NUMBERS.sample }

@@ -77,6 +77,7 @@ module CpfCnpj
 
     def validate(document)
       return if document.valid?
+
       stderr << "Error: Invalid number\n"
       exit 1
     end

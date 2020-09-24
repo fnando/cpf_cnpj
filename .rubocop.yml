@@ -1,59 +1,12 @@
+---
+inherit_gem:
+  rubocop-fnando: .rubocop.yml
+
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.7
+  NewCops: enable
+  Exclude:
+    - vendor/**/*
 
-  Include:
-    - '**/*.gemspec'
-    - '**/*.podspec'
-    - '**/*.jbuilder'
-    - '**/*.rake'
-    - '**/*.opal'
-    - '**/config.ru'
-    - '**/Gemfile'
-    - '**/Rakefile'
-    - '**/Capfile'
-    - '**/Guardfile'
-    - '**/Podfile'
-    - '**/Thorfile'
-    - '**/Vagrantfile'
-    - '**/Berksfile'
-    - '**/Cheffile'
-    - '**/Vagabondfile'
-
-Style/Documentation:
+Style/OptionalBooleanParameter:
   Enabled: false
-
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-Layout/SpaceInsideBlockBraces:
-  EnforcedStyle: space
-  EnforcedStyleForEmptyBraces: space
-  SpaceBeforeBlockParameters: false
-
-Layout/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
-  EnforcedStyleForEmptyBraces: no_space
-
-Layout/FirstArrayElementLineBreak:
-  Enabled: true
-
-Layout/FirstHashElementLineBreak:
-  Enabled: true
-
-Style/SymbolArray:
-  Enabled: true
-
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    '%':  '[]'
-    '%i': '[]'
-    '%q': '[]'
-    '%Q': '[]'
-    '%r': '[]'
-    '%s': '[]'
-    '%w': '[]'
-    '%W': '[]'
-    '%x': '[]'
-
-Metrics/LineLength:
-  Max: 100

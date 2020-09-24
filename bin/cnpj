@@ -3,4 +3,4 @@
 
 $LOAD_PATH.unshift "#{__dir__}/../lib"
 require "cpf_cnpj"
-CpfCnpj::CLI.new(CNPJ, ARGV, STDIN, STDOUT, STDERR).start
+CpfCnpj::CLI.new(CNPJ, ARGV, $stdin, $stdout, $stderr).start

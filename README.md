@@ -4,11 +4,16 @@
 [![Code Climate](https://codeclimate.com/github/fnando/cpf_cnpj/badges/gpa.svg)](https://codeclimate.com/github/fnando/cpf_cnpj)
 [![Gem Version](https://badge.fury.io/rb/cpf_cnpj.svg)](http://badge.fury.io/rb/cpf_cnpj)
 
-This gem does some [CPF](http://en.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%ADsicas)/[CNPJ](http://en.wikipedia.org/wiki/CNPJ) magic. It allows you to create, validate and format CPF/CNPJ, even through the command-line.
+This gem does some
+[CPF](http://en.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%ADsicas)/[CNPJ](http://en.wikipedia.org/wiki/CNPJ)
+magic. It allows you to create, validate and format CPF/CNPJ, even through the
+command-line.
 
-Just making my life easier when filling these damn numbers on internet bankings and government sites.
+Just making my life easier when filling these damn numbers on internet bankings
+and government sites.
 
-For ActiveModel/ActiveRecord validations, please check <https://github.com/fnando/validators>.
+For ActiveModel/ActiveRecord validations, please check
+<https://github.com/fnando/validators>.
 
 ## Installation
 
@@ -28,7 +33,8 @@ Or install it yourself as:
 
 ### Ruby API
 
-This library has the same API for both CNPJ/CPF, so only one of them is documented below.
+This library has the same API for both CNPJ/CPF, so only one of them is
+documented below.
 
 ```ruby
 require "cpf_cnpj"
@@ -45,7 +51,9 @@ cpf.valid?            # Check if CPF is valid
 
 #### Strict Validation
 
-By default, validations will strip any characters that aren't numbers. This means that `532#####820------857\n96` is considered a valid number. To perform a strict validation use `strict: true`.
+By default, validations will strip any characters that aren't numbers. This
+means that `532#####820------857\n96` is considered a valid number. To perform a
+strict validation use `strict: true`.
 
 ```ruby
 CPF.valid?(number, strict: true)

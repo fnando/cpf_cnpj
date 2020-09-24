@@ -16,7 +16,7 @@ module CPFCli
         assert_equal stdout, ""
       end
 
-      test "outputs error message if provided number is invalid [using #{switch}]" do
+      test "outputs error if provided number is invalid [using #{switch}]" do
         exit_status, _, stderr = capture_syscall do
           system "./bin/cpf #{switch} invalid"
         end
