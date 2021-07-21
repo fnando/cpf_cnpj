@@ -15,28 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: >
-            ${{ runner.os }}-${{ matrix.ruby }}-gems-${{
-            hashFiles(matrix.gemfile) }}
-          restore-keys: >
-            ${{ runner.os }}-${{ matrix.ruby }}-gems-${{
-            hashFiles(matrix.gemfile) }}
-
       - name: Set up Ruby
         uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
 
       - name: Install gem dependencies
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle update --jobs 4 --retry 3
+        run: bundle install
+
+      - name: Configure gem binaries
+        run: chmod +x bin/*
 
       - name: Run Tests
-        run: |
-          chmod +x bin/*
-          bundle exec rake
+        run: bundle exec rake
