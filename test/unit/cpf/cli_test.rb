@@ -9,7 +9,7 @@ module CPFCli
     %w[-c --check].each do |switch|
       test "checks if provided number is valid [using #{switch}]" do
         exit_status, stdout = capture_syscall do
-          system "./bin/cpf #{switch} 76616598837"
+          system "ruby ./bin/cpf #{switch} 76616598837"
         end
 
         assert_equal 0, exit_status
@@ -18,7 +18,7 @@ module CPFCli
 
       test "outputs error if provided number is invalid [using #{switch}]" do
         exit_status, _, stderr = capture_syscall do
-          system "./bin/cpf #{switch} invalid"
+          system "ruby ./bin/cpf #{switch} invalid"
         end
 
         assert_equal 1, exit_status
@@ -33,7 +33,7 @@ module CPFCli
     %w[-h --help].each do |switch|
       test "outputs help [using #{switch}]" do
         exit_status, _, stderr = capture_syscall do
-          system "./bin/cpf #{switch}"
+          system "ruby ./bin/cpf #{switch}"
         end
 
         assert_equal 1, exit_status
@@ -43,7 +43,7 @@ module CPFCli
 
     test "outputs help on tail" do
       exit_status, _, stderr = capture_syscall do
-        system "./bin/cpf"
+        system "ruby ./bin/cpf"
       end
 
       assert_equal 1, exit_status
@@ -57,7 +57,7 @@ module CPFCli
     %w[-v --version].each do |switch|
       test "outputs version [using #{switch}]" do
         exit_status, stdout, _stderr = capture_syscall do
-          system "./bin/cpf #{switch}"
+          system "ruby ./bin/cpf #{switch}"
         end
 
         assert_equal 0, exit_status
@@ -72,7 +72,7 @@ module CPFCli
     %w[-g --generate].each do |switch|
       test "generates number [using #{switch}]" do
         exit_status, stdout = capture_syscall do
-          system "./bin/cpf #{switch}"
+          system "ruby ./bin/cpf #{switch}"
         end
 
         assert_equal 0, exit_status
@@ -82,7 +82,7 @@ module CPFCli
 
     test "generates stripped number" do
       exit_status, stdout = capture_syscall do
-        system "./bin/cpf -gs"
+        system "ruby ./bin/cpf -gs"
       end
 
       assert_equal 0, exit_status
@@ -96,7 +96,7 @@ module CPFCli
     %w[-f --format].each do |switch|
       test "formats argument [using #{switch}]" do
         exit_status, stdout = capture_syscall do
-          system "./bin/cpf #{switch} 76616598837"
+          system "ruby ./bin/cpf #{switch} 76616598837"
         end
 
         assert_equal 0, exit_status
@@ -115,7 +115,7 @@ module CPFCli
 
     test "fails when providing invalid number" do
       exit_status, _, stderr = capture_syscall do
-        system "./bin/cpf --format invalid"
+        system "ruby ./bin/cpf --format invalid"
       end
 
       assert_equal 1, exit_status
@@ -124,7 +124,7 @@ module CPFCli
 
     test "fails when not providing a number" do
       exit_status, _, stderr = capture_syscall do
-        system "./bin/cpf --format"
+        system "ruby ./bin/cpf --format"
       end
 
       assert_equal 1, exit_status
