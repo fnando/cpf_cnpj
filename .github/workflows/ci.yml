@@ -38,4 +38,5 @@ jobs:
 
       - name: Run Tests
         run: |
+          chmod +x bin/*
           bundle exec rake
