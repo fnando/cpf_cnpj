@@ -37,5 +37,6 @@ jobs:
           bundle update --jobs 4 --retry 3
 
       - name: Run Tests
+      - shell: 'script -q -e -c "bash --noprofile --norc -eo pipefail {0}"'
         run: |
           bundle exec rake
