@@ -38,4 +38,4 @@ jobs:
 
       - name: Run Tests
         run: |
-          bash --noprofile --norc -eo pipefail -c "bundle exec rake"
+          bundle exec rake
