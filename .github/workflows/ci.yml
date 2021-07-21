@@ -24,7 +24,9 @@ jobs:
         run: bundle install
 
       - name: Configure gem binaries
-        run: chmod +x bin/*
+        run: |
+          set +e
+          chmod +x bin/*
 
       - name: Run Tests
         run: bundle exec rake
