@@ -9,7 +9,7 @@ module CNPJCli
     %w[-c --check].each do |switch|
       test "checks if provided number is valid [using #{switch}]" do
         exit_status, stdout = capture_syscall do
-          system "./bin/cnpj #{switch} 54550752000155"
+          system "ruby ./bin/cnpj #{switch} 54550752000155"
         end
 
         assert_equal 0, exit_status
@@ -18,7 +18,7 @@ module CNPJCli
 
       test "outputs error if provided number is invalid [using #{switch}]" do
         exit_status, _, stderr = capture_syscall do
-          system "./bin/cnpj #{switch} invalid"
+          system "ruby ./bin/cnpj #{switch} invalid"
         end
 
         assert_equal 1, exit_status
@@ -33,7 +33,7 @@ module CNPJCli
     %w[-h --help].each do |switch|
       test "outputs help [using #{switch}]" do
         exit_status, _, stderr = capture_syscall do
-          system "./bin/cnpj #{switch}"
+          system "ruby ./bin/cnpj #{switch}"
         end
 
         assert_equal 1, exit_status
@@ -43,7 +43,7 @@ module CNPJCli
 
     test "outputs help on tail" do
       exit_status, _, stderr = capture_syscall do
-        system "./bin/cnpj"
+        system "ruby ./bin/cnpj"
       end
 
       assert_equal 1, exit_status
@@ -57,7 +57,7 @@ module CNPJCli
     %w[-v --version].each do |switch|
       test "outputs version [using #{switch}]" do
         exit_status, stdout = capture_syscall do
-          system "./bin/cnpj #{switch}"
+          system "ruby ./bin/cnpj #{switch}"
         end
 
         assert_equal 0, exit_status
@@ -72,7 +72,7 @@ module CNPJCli
     %w[-g --generate].each do |switch|
       test "generates number [using #{switch}]" do
         exit_status, stdout = capture_syscall do
-          system "./bin/cnpj #{switch}"
+          system "ruby ./bin/cnpj #{switch}"
         end
 
         assert_equal 0, exit_status
@@ -82,7 +82,7 @@ module CNPJCli
 
     test "generates stripped number" do
       exit_status, stdout = capture_syscall do
-        system "./bin/cnpj -gs"
+        system "ruby ./bin/cnpj -gs"
       end
 
       assert_equal 0, exit_status
@@ -96,7 +96,7 @@ module CNPJCli
     %w[-f --format].each do |switch|
       test "formats argument [using #{switch}]" do
         exit_status, stdout = capture_syscall do
-          system "./bin/cnpj #{switch} 54550752000155"
+          system "ruby ./bin/cnpj #{switch} 54550752000155"
         end
 
         assert_equal 0, exit_status
@@ -115,7 +115,7 @@ module CNPJCli
 
     test "fails when providing invalid number" do
       exit_status, _, stderr = capture_syscall do
-        system "./bin/cnpj --format invalid"
+        system "ruby ./bin/cnpj --format invalid"
       end
 
       assert_equal 1, exit_status
@@ -124,7 +124,7 @@ module CNPJCli
 
     test "fails when not providing a number" do
       exit_status, _, stderr = capture_syscall do
-        system "./bin/cnpj --format"
+        system "ruby ./bin/cnpj --format"
       end
 
       assert_equal 1, exit_status
