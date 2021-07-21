@@ -12,7 +12,7 @@ module CPFCli
           system "./bin/cpf #{switch} 76616598837"
         end
 
-        #assert_equal 0, exit_status
+        assert_equal 0, exit_status
         assert_equal stdout, ""
       end
 
@@ -21,7 +21,7 @@ module CPFCli
           system "./bin/cpf #{switch} invalid"
         end
 
-        #assert_equal 1, exit_status
+        assert_equal 1, exit_status
         assert stderr.include?("Error: Invalid number")
       end
     end
@@ -36,7 +36,7 @@ module CPFCli
           system "./bin/cpf #{switch}"
         end
 
-        #assert_equal 1, exit_status
+        assert_equal 1, exit_status
         assert stderr.include?("Usage: cpf")
       end
     end
@@ -46,7 +46,7 @@ module CPFCli
         system "./bin/cpf"
       end
 
-      #assert_equal 1, exit_status
+      assert_equal 1, exit_status
       assert stderr.include?("Usage: cpf")
     end
   end
@@ -60,7 +60,7 @@ module CPFCli
           system "./bin/cpf #{switch}"
         end
 
-        #assert_equal 0, exit_status
+        assert_equal 0, exit_status
         assert stdout.include?(CPF::VERSION.to_s)
       end
     end
@@ -75,7 +75,7 @@ module CPFCli
           system "./bin/cpf #{switch}"
         end
 
-        #assert_equal 0, exit_status
+        assert_equal 0, exit_status
         assert_match CPF::REGEX, stdout
       end
     end
@@ -85,7 +85,7 @@ module CPFCli
         system "./bin/cpf -gs"
       end
 
-      #assert_equal 0, exit_status
+      assert_equal 0, exit_status
       assert_match(/\A\d{11}\Z/, stdout)
     end
   end
@@ -99,7 +99,7 @@ module CPFCli
           system "./bin/cpf #{switch} 76616598837"
         end
 
-        #assert_equal 0, exit_status
+        assert_equal 0, exit_status
         assert stdout.include?("766.165.988-37")
       end
     end
@@ -109,7 +109,7 @@ module CPFCli
         system "echo 76616598837 | ./bin/cpf --format"
       end
 
-      #assert_equal 0, exit_status
+      assert_equal 0, exit_status
       assert stdout.include?("766.165.988-37")
     end
 
@@ -118,7 +118,7 @@ module CPFCli
         system "./bin/cpf --format invalid"
       end
 
-      #assert_equal 1, exit_status
+      assert_equal 1, exit_status
       assert stderr.include?("Error: Invalid number")
     end
 
@@ -127,7 +127,7 @@ module CPFCli
         system "./bin/cpf --format"
       end
 
-      #assert_equal 1, exit_status
+      assert_equal 1, exit_status
       assert stderr.include?("Error: Invalid number")
     end
   end
