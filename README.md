@@ -1,6 +1,6 @@
 # CPF/CNPJ
 
-[![Build Status](https://travis-ci.org/fnando/cpf_cnpj.svg)](https://travis-ci.org/fnando/cpf_cnpj)
+[![CI](https://github.com/fnando/cpf_cnpj/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/fnando/cpf_cnpj/actions/workflows/ci.yml)
 [![Code Climate](https://codeclimate.com/github/fnando/cpf_cnpj/badges/gpa.svg)](https://codeclimate.com/github/fnando/cpf_cnpj)
 [![Gem Version](https://badge.fury.io/rb/cpf_cnpj.svg)](http://badge.fury.io/rb/cpf_cnpj)
 
