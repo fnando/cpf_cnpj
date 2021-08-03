@@ -10,7 +10,7 @@ module CaptureSyscall
       capture_subprocess_io do
         yield
         #exit_status = $CHILD_STATUS.exitstatus
-        exit_status = $CHILD_STATUS.success? ? 0 : 1
+        exit_status = $CHILD_STATUS.exited? ? 0 : 1
       end
     end
 
