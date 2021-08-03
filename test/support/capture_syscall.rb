@@ -9,8 +9,7 @@ module CaptureSyscall
     
     stdout, stderr = Timeout.timeout(1) do
       capture_subprocess_io do
-        system cmd
-        exit_status = $?.exitstatus
+        exit_status = system(cmd) ? 0 : 1
       end
     end
     
