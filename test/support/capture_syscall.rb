@@ -5,7 +5,7 @@ require "timeout"
 module CaptureSyscall
   def capture_syscall(cmd)
     stdout = stderr = `#{cmd} 2>&1`
-    exit_status = $?.exitstatus
+    exit_status = $CHILD_STATUS.exitstatus
     puts "BBB: |#{stdout}| --- |#{stderr}| --- |#{exit_status}|"
     [exit_status, stdout, stderr]    
   end
