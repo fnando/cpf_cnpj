@@ -5,6 +5,8 @@ require "open3"
 
 module CaptureSyscall
   def capture_syscall(cmd)
+    exit_status = nil
+    
     stdout, stderr = Timeout.timeout(1) do
       capture_subprocess_io do
         system cmd
