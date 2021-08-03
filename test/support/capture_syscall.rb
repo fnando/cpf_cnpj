@@ -7,7 +7,7 @@ module CaptureSyscall
   def capture_syscall(cmd)
     stdout, stderr = Timeout.timeout(1) do
       capture_subprocess_io do
-        `#{cmd}`
+        system cmd
         exit_status = $?.exitstatus
       end
     end
