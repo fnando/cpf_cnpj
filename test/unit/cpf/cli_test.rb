@@ -100,6 +100,7 @@ module CPFCli
         end
 
         #assert_equal 0, exit_status
+        puts "aaaaaaaa: |#{stdout}|"
         assert stdout.include?("766.165.988-37")
       end
     end
