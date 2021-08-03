@@ -3,10 +3,16 @@
 require "timeout"
 
 module CaptureSyscall
-  def capture_syscall(cmd)
-    stdout = stderr = `#{cmd} 2>&1`
-    exit_status = $CHILD_STATUS.exitstatus
-    puts "@#{cmd}: |#{stdout}| --- |#{stderr}| --- |#{exit_status}|@"
-    [exit_status, stdout, stderr]    
+  def capture_syscall
+    exit_status = nil
+
+    stdout, stderr = Timeout.timeout(1) do
+      capture_subprocess_io do
+        yield
+        exit_status = $CHILD_STATUS.exitstatus
+      end
+    end
+
+    [exit_status, stdout, stderr]  
   end
 end
