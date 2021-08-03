@@ -8,7 +8,7 @@ module CPFCli
 
     %w[-c --check].each do |switch|
       test "checks if provided number is valid [using #{switch}]" do
-        exit_status, stdout = capture_syscall "./bin/cpf #{switch} 76616598837"
+        exit_status, stdout = capture_syscall "./bin/cpf #{switch} 89222910010"
 
         assert_equal 0, exit_status
         assert_equal stdout, ""
