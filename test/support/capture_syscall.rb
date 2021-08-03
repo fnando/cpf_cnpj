@@ -9,8 +9,7 @@ module CaptureSyscall
     stdout, stderr = Timeout.timeout(1) do
       capture_subprocess_io do
         yield
-        #exit_status = $CHILD_STATUS.exitstatus
-        exit_status = $CHILD_STATUS.exited? ? 0 : 1
+        exit_status = $CHILD_STATUS.exitstatus
       end
     end
 
