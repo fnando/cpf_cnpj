@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "test_helper"
-=begin
+
 module CNPJCli
   class CheckTest < Minitest::Test
     include CaptureSyscall
@@ -132,4 +132,3 @@ module CNPJCli
     end
   end
 end
-=end
