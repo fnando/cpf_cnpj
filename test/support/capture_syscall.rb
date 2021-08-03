@@ -11,6 +11,8 @@ module CaptureSyscall
         exit_status = $?.exitstatus
       end
     end
+    
+    [exit_status, stdout, stderr]
 
     #Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
     #  [wait_thr.value.exitstatus, stdout.read, stderr.read]
