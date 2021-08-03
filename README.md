@@ -93,3 +93,14 @@ This library gives you two binaries: `cpf` and `cnpj`.
 3. Commit your changes (`git commit -am "Added some feature"`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Execute tests/specs locally
+
+To execute gem tests locally, use Docker with the commands below:
+
+```bash
+git clone https://github.com/fnando/cpf_cnpj
+cd cpf_cnpj/
+docker build -t cpf_cnpj_specs .
+docker run -v $(pwd):/app/ -it cpf_cnpj_specs
+```
