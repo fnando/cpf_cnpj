@@ -48,7 +48,7 @@ module CpfCnpj
 
       opts.on("-v", "--version", "Show version") do
         stdout << VERSION
-        exit 0
+        exit
       end
 
       opts.on_tail("-h", "--help", "Show help") do
@@ -84,7 +84,7 @@ module CpfCnpj
 
     # No-op method. CPF is always validated on CpfCnpj::CLI#start.
     def check(_document)
-      exit 0
+      exit
     end
 
     def generate(options)
@@ -100,21 +100,21 @@ module CpfCnpj
 
       stdout << output
 
-      exit 0
+      exit
     end
 
     def format(document)
       return unless options[:format]
 
       stdout << document.formatted
-      exit 0
+      exit
     end
 
     def strip(document)
       return unless options[:strip]
 
       stdout << document.stripped
-      exit 0
+      exit
     end
 
     def help(run = options.empty?)
