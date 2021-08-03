@@ -13,6 +13,6 @@ module CaptureSyscall
       end
     end
 
-    [exit_status, stdout, stderr]  
+    [exit_status, stdout, stderr]
   end
 end
