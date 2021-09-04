@@ -22,8 +22,6 @@ class CPF
     77777777777
     88888888888
     99999999999
-    12345678909
-    01234567890
   ].freeze
 
   def self.valid?(number, strict: false)
