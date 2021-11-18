@@ -39,6 +39,7 @@ documented below.
 ```ruby
 require "cpf_cnpj"
 
+CPF.format(number)    # Return formatted CPF (xxx.xxx.xxx-xx)
 CPF.valid?(number)    # Check if a CPF is valid
 CPF.generate          # Generate a random CPF number
 CPF.generate(true)    # Generate a formatted number
