@@ -11,7 +11,7 @@ class CNPJ
   VALIDATION_SIZE_REGEX = /^\d{14}$/.freeze
   NUMBER_SIZE = 12
 
-  BLACKLIST = %w[
+  DENYLIST = %w[
     00000000000000
     11111111111111
     22222222222222
@@ -55,8 +55,12 @@ class CNPJ
   end
 
   def valid?
-    return unless stripped =~ VALIDATION_SIZE_REGEX
-    return if BLACKLIST.include?(stripped)
+    if strict && !(number.match?(REGEX) || number.match?(VALIDATION_SIZE_REGEX))
+      return
+    end
+
+    return unless stripped.match?(VALIDATION_SIZE_REGEX)
+    return if DENYLIST.include?(stripped)
 
     digits = numbers[0...12]
     digits << VerifierDigit.generate(digits)
@@ -66,7 +70,7 @@ class CNPJ
   end
 
   def ==(other)
-    super || other.instance_of?(self.class) && other.stripped == stripped
+    super || (other.instance_of?(self.class) && other.stripped == stripped)
   end
   alias eql? ==
 

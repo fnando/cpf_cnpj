@@ -8,10 +8,10 @@ class CPF
   attr_reader :number, :strict
 
   REGEX = /\A\d{3}\.\d{3}\.\d{3}-\d{2}\Z/.freeze
-  VALIDATION_SIZE_REGEX = /^[0-9]{11}$/.freeze
+  VALIDATION_SIZE_REGEX = /^\d{11}$/.freeze
   NUMBER_SIZE = 9
 
-  BLACKLIST = %w[
+  DENYLIST = %w[
     00000000000
     11111111111
     22222222222
@@ -23,7 +23,6 @@ class CPF
     88888888888
     99999999999
     12345678909
-    01234567890
   ].freeze
 
   def self.valid?(number, strict: false)
@@ -57,8 +56,12 @@ class CPF
   end
 
   def valid?
-    return unless stripped =~ VALIDATION_SIZE_REGEX
-    return if BLACKLIST.include?(stripped)
+    if strict && !(number.match?(REGEX) || number.match?(VALIDATION_SIZE_REGEX))
+      return
+    end
+
+    return unless stripped.match?(VALIDATION_SIZE_REGEX)
+    return if DENYLIST.include?(stripped)
 
     digits = numbers[0...9]
     digits << VerifierDigit.generate(digits)
@@ -68,7 +71,7 @@ class CPF
   end
 
   def ==(other)
-    super || other.instance_of?(self.class) && other.stripped == stripped
+    super || (other.instance_of?(self.class) && other.stripped == stripped)
   end
   alias eql? ==
 

@@ -3,8 +3,7 @@
 require "test_helper"
 
 class CpfTest < Minitest::Test
-  test "blacklists common numbers" do
-    refute CPF.valid?("01234567890")
+  test "rejects common numbers" do
     refute CPF.valid?("11111111111")
     refute CPF.valid?("22222222222")
     refute CPF.valid?("33333333333")
@@ -14,6 +13,7 @@ class CpfTest < Minitest::Test
     refute CPF.valid?("77777777777")
     refute CPF.valid?("88888888888")
     refute CPF.valid?("99999999999")
+    refute CPF.valid?("00000000000")
     refute CPF.valid?("12345678909")
   end
 
@@ -46,6 +46,7 @@ class CpfTest < Minitest::Test
 
   test "strictly validates strings" do
     refute CPF.valid?("295$379\n955...93", strict: true)
+    refute CPF.valid?("295.......379.......955-----93", strict: true)
     assert CPF.valid?("295.379.955-93", strict: true)
     assert CPF.valid?("29537995593", strict: true)
   end

@@ -6,7 +6,7 @@ class CNPJ
       index = 2
 
       sum = numbers.reverse.reduce(0) do |buffer, number|
-        (buffer + number * index).tap do
+        (buffer + (number * index)).tap do
           index = index == 9 ? 2 : index + 1
         end
       end

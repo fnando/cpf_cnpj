@@ -9,7 +9,7 @@ class CPF
         number * (modulus - index)
       end
 
-      mod = multiplied.reduce(:+) % 11
+      mod = multiplied.sum % 11
       mod < 2 ? 0 : 11 - mod
     end
   end

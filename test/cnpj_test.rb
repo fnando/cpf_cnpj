@@ -3,7 +3,7 @@
 require "test_helper"
 
 class CnpjTest < Minitest::Test
-  test "blacklists common numbers" do
+  test "rejects common numbers" do
     refute CNPJ.valid?("00000000000000")
     refute CNPJ.valid?("11111111111111")
     refute CNPJ.valid?("22222222222222")
@@ -51,8 +51,11 @@ class CnpjTest < Minitest::Test
     refute CNPJ.valid?("aa.bb.ccc/dddd-ee")
   end
 
-  test "rejects strings (strict)" do
+  test "strictly validates strings" do
     refute CNPJ.valid?("aa.bb.ccc/dddd-ee", strict: true)
+    refute CNPJ.valid?("54....550....752///0001---55", strict: true)
+    assert CNPJ.valid?("54.550.752/0001-55", strict: true)
+    assert CNPJ.valid?("54550752000155", strict: true)
   end
 
   test "compare objects by their numeric value" do
