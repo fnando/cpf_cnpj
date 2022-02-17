@@ -35,6 +35,10 @@ class CPF
     formatted ? cpf.formatted : cpf.stripped
   end
 
+  def self.format(number, strict: false)
+    new(number, strict).formatted
+  end
+
   def initialize(number, strict = false)
     @number = number.to_s
     @strict = strict
