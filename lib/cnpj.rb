@@ -69,6 +69,10 @@ class CNPJ
     digits[-2, 2] == numbers[-2, 2]
   end
 
+  def basic_digits
+    @basic_digits ||= stripped[0..7]
+  end
+
   def ==(other)
     super || (other.instance_of?(self.class) && other.stripped == stripped)
   end

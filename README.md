@@ -33,8 +33,8 @@ Or install it yourself as:
 
 ### Ruby API
 
-This library has the same API for both CNPJ/CPF, so only one of them is
-documented below.
+This library has this API for both CNPJ/CPF, so only one of them is
+documented:
 
 ```ruby
 require "cpf_cnpj"
@@ -47,6 +47,17 @@ cpf = CPF.new(number)
 cpf.formatted         # Return formatted CPF (xxx.xxx.xxx-xx)
 cpf.stripped          # Return stripped CPF (xxxxxxxxxxx)
 cpf.valid?            # Check if CPF is valid
+```
+
+And this extra feature for CNPJ:
+
+```ruby
+require "cpf_cnpj"
+
+cnpj = CNPJ.new(number)
+
+cnpj.basic_digits         # The first 8 digits of an CNPJ
+
 ```
 
 #### Strict Validation
