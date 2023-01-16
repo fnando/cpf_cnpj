@@ -68,4 +68,12 @@ class CnpjTest < Minitest::Test
     refute_equal one, different
     refute_equal other, different
   end
+
+  test "returns the first 8 numeric digits of an valid cnpj" do
+    only_numbers = "42475818050"
+    numbers_and_symbols = "424.758.180-50"
+
+    assert_equal CNPJ.new(only_numbers).basic_digits, "42475818"
+    assert_equal CNPJ.new(numbers_and_symbols).basic_digits, "42475818"
+  end
 end
