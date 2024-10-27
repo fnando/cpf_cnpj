@@ -26,16 +26,19 @@ class CnpjTest < Minitest::Test
 
   test "validates formatted strings" do
     number = "54.550.752/0001-55"
+
     assert CNPJ.valid?(number)
   end
 
   test "validates unformatted strings" do
     number = "54550752000155"
+
     assert CNPJ.valid?(number)
   end
 
   test "validates messed strings" do
     number = "54550[752#0001..$55"
+
     assert CNPJ.valid?(number)
   end
 

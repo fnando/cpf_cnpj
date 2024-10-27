@@ -13,7 +13,7 @@ module CNPJCli
         end
 
         assert_equal 0, exit_status
-        assert_equal stdout, ""
+        assert_equal "", stdout
       end
 
       test "outputs error if provided number is invalid [using #{switch}]" do
@@ -22,7 +22,7 @@ module CNPJCli
         end
 
         assert_equal 1, exit_status
-        assert stderr.include?("Error: Invalid number")
+        assert_includes stderr, "Error: Invalid number"
       end
     end
   end
@@ -37,7 +37,7 @@ module CNPJCli
         end
 
         assert_equal 1, exit_status
-        assert stderr.include?("Usage: cnpj")
+        assert_includes stderr, "Usage: cnpj"
       end
     end
 
@@ -47,7 +47,7 @@ module CNPJCli
       end
 
       assert_equal 1, exit_status
-      assert stderr.include?("Usage: cnpj")
+      assert_includes stderr, "Usage: cnpj"
     end
   end
 
@@ -61,7 +61,7 @@ module CNPJCli
         end
 
         assert_equal 0, exit_status
-        assert stdout.include?(CNPJ::VERSION.to_s)
+        assert_includes stdout, CNPJ::VERSION.to_s
       end
     end
   end
@@ -100,7 +100,7 @@ module CNPJCli
         end
 
         assert_equal 0, exit_status
-        assert stdout.include?("54.550.752/0001-55")
+        assert_includes stdout, "54.550.752/0001-55"
       end
     end
 
@@ -110,7 +110,7 @@ module CNPJCli
       end
 
       assert_equal 0, exit_status
-      assert stdout.include?("54.550.752/0001-55")
+      assert_includes stdout, "54.550.752/0001-55"
     end
 
     test "fails when providing invalid number" do
@@ -119,7 +119,7 @@ module CNPJCli
       end
 
       assert_equal 1, exit_status
-      assert stderr.include?("Error: Invalid number")
+      assert_includes stderr, "Error: Invalid number"
     end
 
     test "fails when not providing a number" do
@@ -128,7 +128,7 @@ module CNPJCli
       end
 
       assert_equal 1, exit_status
-      assert stderr.include?("Error: Invalid number")
+      assert_includes stderr, "Error: Invalid number"
     end
   end
 end

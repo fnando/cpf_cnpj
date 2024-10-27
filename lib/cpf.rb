@@ -57,11 +57,11 @@ class CPF
 
   def valid?
     if strict && !(number.match?(REGEX) || number.match?(VALIDATION_SIZE_REGEX))
-      return
+      return false
     end
 
-    return unless stripped.match?(VALIDATION_SIZE_REGEX)
-    return if DENYLIST.include?(stripped)
+    return false unless stripped.match?(VALIDATION_SIZE_REGEX)
+    return false if DENYLIST.include?(stripped)
 
     digits = numbers[0...9]
     digits << VerifierDigit.generate(digits)

@@ -31,16 +31,19 @@ class CpfTest < Minitest::Test
 
   test "validates formatted strings" do
     number = "295.379.955-93"
+
     assert CPF.valid?(number)
   end
 
   test "validates unformatted strings" do
     number = "29537995593"
+
     assert CPF.valid?(number)
   end
 
   test "validates messed strings" do
     number = "295$379\n955...93"
+
     assert CPF.valid?(number)
   end
 
@@ -57,11 +60,13 @@ class CpfTest < Minitest::Test
 
   test "returns stripped number" do
     cpf = CPF.new("295.379.955-93")
+
     assert_equal "29537995593", cpf.stripped
   end
 
   test "formats number" do
     cpf = CPF.new("29537995593")
+
     assert_equal "295.379.955-93", cpf.formatted
   end
 
