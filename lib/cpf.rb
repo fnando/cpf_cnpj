@@ -74,6 +74,10 @@ class CPF
     digits[-2, 2] == numbers[-2, 2]
   end
 
+  def number_without_verifier
+    numbers[0...9].join
+  end
+
   def ==(other)
     super || (other.instance_of?(self.class) && other.stripped == stripped)
   end

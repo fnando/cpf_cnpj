@@ -39,15 +39,16 @@ documented below.
 ```ruby
 require "cpf_cnpj"
 
-CPF.format(number)    # Format CPF (xxx.xxx.xxx-xx)
-CPF.valid?(number)    # Check if a CPF is valid
-CPF.generate          # Generate a random CPF number
-CPF.generate(true)    # Generate a formatted number
+CPF.format(number)            # Format CPF (xxx.xxx.xxx-xx)
+CPF.valid?(number)            # Check if a CPF is valid
+CPF.generate                  # Generate a random CPF number
+CPF.generate(true)            # Generate a formatted number
 
 cpf = CPF.new(number)
-cpf.formatted         # Return formatted CPF (xxx.xxx.xxx-xx)
-cpf.stripped          # Return stripped CPF (xxxxxxxxxxx)
-cpf.valid?            # Check if CPF is valid
+cpf.formatted                 # Return formatted CPF (xxx.xxx.xxx-xx)
+cpf.stripped                  # Return stripped CPF (xxxxxxxxxxx)
+cpf.valid?                    # Check if CPF is valid
+cpf.number_without_verifier   # Return CPF without verifier digits
 ```
 
 #### Strict Validation

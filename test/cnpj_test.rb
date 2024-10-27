@@ -78,4 +78,10 @@ class CnpjTest < Minitest::Test
     refute_equal one, different
     refute_equal other, different
   end
+
+  test "returns number without verifier" do
+    cnpj = CNPJ.new("54550752000155")
+
+    assert_equal "545507520001", cnpj.number_without_verifier
+  end
 end

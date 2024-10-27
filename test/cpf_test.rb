@@ -97,4 +97,10 @@ class CpfTest < Minitest::Test
     refute_equal one, different
     refute_equal other, different
   end
+
+  test "returns number without verifier" do
+    cpf = CPF.new("29537995593")
+
+    assert_equal "295379955", cpf.number_without_verifier
+  end
 end

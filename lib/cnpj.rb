@@ -78,6 +78,10 @@ class CNPJ
   end
   alias eql? ==
 
+  def number_without_verifier
+    numbers[0...12].join
+  end
+
   private def numbers
     @numbers ||= stripped.each_char.to_a.map(&:to_i)
   end
