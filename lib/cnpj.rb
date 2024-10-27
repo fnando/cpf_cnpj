@@ -66,7 +66,7 @@ class CNPJ
     return false unless stripped.match?(VALIDATION_SIZE_REGEX)
     return false if DENYLIST.include?(stripped)
 
-    digits = numbers[0...12]
+    digits = numbers[0...NUMBER_SIZE]
     digits << VerifierDigit.generate(digits)
     digits << VerifierDigit.generate(digits)
 
@@ -79,7 +79,7 @@ class CNPJ
   alias eql? ==
 
   def number_without_verifier
-    numbers[0...12].join
+    numbers[0...NUMBER_SIZE].join
   end
 
   private def numbers

@@ -67,7 +67,7 @@ class CPF
     return false unless stripped.match?(VALIDATION_SIZE_REGEX)
     return false if DENYLIST.include?(stripped)
 
-    digits = numbers[0...9]
+    digits = numbers[0...NUMBER_SIZE]
     digits << VerifierDigit.generate(digits)
     digits << VerifierDigit.generate(digits)
 
@@ -75,7 +75,7 @@ class CPF
   end
 
   def number_without_verifier
-    numbers[0...9].join
+    numbers[0...NUMBER_SIZE].join
   end
 
   def ==(other)
