@@ -25,6 +25,10 @@ class CPF
     12345678909
   ].freeze
 
+  def self.format(number)
+    new(number).formatted
+  end
+
   def self.valid?(number, strict: false)
     new(number, strict).valid?
   end

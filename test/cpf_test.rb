@@ -68,6 +68,7 @@ class CpfTest < Minitest::Test
     cpf = CPF.new("29537995593")
 
     assert_equal "295.379.955-93", cpf.formatted
+    assert_equal "295.379.955-93", CPF.format("29537995593")
   end
 
   test "generates formatted number" do
