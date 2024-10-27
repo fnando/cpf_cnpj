@@ -7,8 +7,8 @@ class CNPJ
 
   attr_reader :number, :strict
 
-  REGEX = %r[\A[\dA-Z]{2}\.[\dA-Z]{3}.[\dA-Z]{3}/[\dA-Z]{4}-[\dA-Z]{2}\Z].freeze
-  VALIDATION_SIZE_REGEX = /^[A-Z\d]{14}$/.freeze
+  REGEX = %r[\A[\dA-Z]{2}\.[\dA-Z]{3}.[\dA-Z]{3}/[\dA-Z]{4}-\d{2}\Z].freeze
+  VALIDATION_SIZE_REGEX = /^[A-Z\d]{12}\d{2}$/.freeze
   NUMBER_SIZE = 12
 
   DENYLIST = %w[
