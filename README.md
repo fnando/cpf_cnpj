@@ -36,6 +36,12 @@ Or install it yourself as:
 This library has the same API for both CNPJ/CPF, so only one of them is
 documented below.
 
+> [!NOTE]
+>
+> This library already supports the new alphanumeric CNPJ algorithm that will be
+> available starting July 2026. For more information, see
+> <https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/cnpj-alfanumerico>.
+
 ```ruby
 require "cpf_cnpj"
 

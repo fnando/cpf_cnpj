@@ -72,7 +72,7 @@ module CNPJCli
       exit_status, stdout = run_command(["-gs"])
 
       assert_equal 0, exit_status
-      assert_match(/\A\d{14}\Z/, stdout)
+      assert_match(/\A[A-Z\d]{14}\Z/, stdout)
     end
   end
 

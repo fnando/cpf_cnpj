@@ -34,8 +34,12 @@ class CPF
   end
 
   def self.generate(formatted = false)
-    number = CpfCnpj::Generator.generate(NUMBER_SIZE, VerifierDigit)
-    cpf = new(number)
+    numbers = Array(0..9)
+    digits = Array.new(NUMBER_SIZE) { numbers.sample }
+    digits << VerifierDigit.generate(digits)
+    digits << VerifierDigit.generate(digits)
+
+    cpf = new(digits.join)
     formatted ? cpf.formatted : cpf.stripped
   end
 

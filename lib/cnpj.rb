@@ -7,8 +7,8 @@ class CNPJ
 
   attr_reader :number, :strict
 
-  REGEX = %r[\A\d{2}\.\d{3}.\d{3}/\d{4}-\d{2}\Z].freeze
-  VALIDATION_SIZE_REGEX = /^\d{14}$/.freeze
+  REGEX = %r[\A[\dA-Z]{2}\.[\dA-Z]{3}.[\dA-Z]{3}/[\dA-Z]{4}-[\dA-Z]{2}\Z].freeze
+  VALIDATION_SIZE_REGEX = /^[A-Z\d]{14}$/.freeze
   NUMBER_SIZE = 12
 
   DENYLIST = %w[
@@ -33,13 +33,18 @@ class CNPJ
   end
 
   def self.generate(formatted = false)
-    number = CpfCnpj::Generator.generate(NUMBER_SIZE, VerifierDigit)
-    cnpj = new(number)
+    numbers = Array("0".."9") + ("A".."Z").to_a
+    digits = Array.new(NUMBER_SIZE) { numbers.sample }
+    numeric_digits = digits.map {|d| d.ord - 48 }
+    numeric_digits << VerifierDigit.generate(numeric_digits)
+    numeric_digits << VerifierDigit.generate(numeric_digits)
+
+    cnpj = new((digits + numeric_digits[-2, 2]).join)
     formatted ? cnpj.formatted : cnpj.stripped
   end
 
   def initialize(number, strict = false)
-    @number = number.to_s
+    @number = number.to_s.upcase
     @strict = strict
   end
 
@@ -64,6 +69,7 @@ class CNPJ
     end
 
     return false unless stripped.match?(VALIDATION_SIZE_REGEX)
+
     return false if DENYLIST.include?(stripped)
 
     digits = numbers[0...NUMBER_SIZE]
@@ -79,10 +85,16 @@ class CNPJ
   alias eql? ==
 
   def number_without_verifier
-    numbers[0...NUMBER_SIZE].join
+    stripped_chars[0...NUMBER_SIZE].join
+  end
+
+  private def stripped_chars
+    @stripped_chars ||= stripped.chars
   end
 
   private def numbers
-    @numbers ||= stripped.each_char.to_a.map(&:to_i)
+    @numbers ||= stripped_chars.map do |number|
+      number.ord - 48
+    end
   end
 end
