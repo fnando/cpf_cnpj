@@ -30,6 +30,18 @@ class CnpjTest < Minitest::Test
     assert CNPJ.valid?(number)
   end
 
+  test "validates formatted strings with letters" do
+    number = "12.ABC.345/01DE-35"
+
+    assert CNPJ.valid?(number)
+  end
+
+  test "validates formatted strings with letters (lowercase)" do
+    number = "12.abc.345/01de-35"
+
+    assert CNPJ.valid?(number)
+  end
+
   test "formats number" do
     cnpj = CNPJ.new("54550752000155")
 
@@ -50,14 +62,17 @@ class CnpjTest < Minitest::Test
   end
 
   test "generates formatted number" do
-    assert_match %r[\A\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}\z], CNPJ.generate(true)
+    assert_match(
+      %r[\A[A-Z\d]{2}\.[A-Z\d]{3}\.[A-Z\d]{3}/[A-Z\d]{4}-[A-Z\d]{2}\z],
+      CNPJ.generate(true)
+    )
   end
 
   test "generates stripped number" do
-    assert_match(/\A\d{14}\z/, CNPJ.generate)
+    assert_match(/\A[A-Z\d]{14}\z/, CNPJ.generate)
   end
 
-  test "rejects strings" do
+  test "rejects invalid strings" do
     refute CNPJ.valid?("aa.bb.ccc/dddd-ee")
   end
 
@@ -66,6 +81,8 @@ class CnpjTest < Minitest::Test
     refute CNPJ.valid?("54....550....752///0001---55", strict: true)
     assert CNPJ.valid?("54.550.752/0001-55", strict: true)
     assert CNPJ.valid?("54550752000155", strict: true)
+    assert CNPJ.valid?("12.ABC.345/01DE-35", strict: true)
+    assert CNPJ.valid?("12ABC34501DE35", strict: true)
   end
 
   test "compare objects by their numeric value" do
@@ -80,8 +97,9 @@ class CnpjTest < Minitest::Test
   end
 
   test "returns number without verifier" do
-    cnpj = CNPJ.new("54550752000155")
-
-    assert_equal "545507520001", cnpj.number_without_verifier
+    assert_equal "545507520001",
+                 CNPJ.new("54550752000155").number_without_verifier
+    assert_equal "12ABC34501DE",
+                 CNPJ.new("12.ABC.345/01DE-35").number_without_verifier
   end
 end
