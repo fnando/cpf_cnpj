@@ -44,7 +44,7 @@ class CNPJ
   end
 
   def initialize(number, strict = false)
-    @number = number.to_s.upcase
+    @number = number.to_s
     @strict = strict
   end
 

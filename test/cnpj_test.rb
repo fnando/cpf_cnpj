@@ -36,10 +36,16 @@ class CnpjTest < Minitest::Test
     assert CNPJ.valid?(number)
   end
 
-  test "validates formatted strings with letters (lowercase)" do
-    number = "12.abc.345/01de-35"
+  test "rejects strings with lowercase letters" do
+    refute CNPJ.valid?("12.abc.345/01de-35")
+    refute CNPJ.valid?("12abc34501de35")
+    refute CNPJ.valid?("12.AbC.345/01dE-35")
+  end
 
-    assert CNPJ.valid?(number)
+  test "strictly rejects strings with lowercase letters" do
+    refute CNPJ.valid?("12.abc.345/01de-35", strict: true)
+    refute CNPJ.valid?("12abc34501de35", strict: true)
+    refute CNPJ.valid?("12.AbC.345/01dE-35", strict: true)
   end
 
   test "formats number" do
