@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ["3.2", "3.3"]
+        ruby: ["3.2", "3.3", "3.4", "4.0"]
 
     steps:
       - uses: actions/checkout@v6
@@ -28,9 +28,7 @@ jobs:
         with:
           path: vendor/bundle
           key: >
-            ${{ runner.os }}-${{ matrix.ruby }}-gems-${{
-            hashFiles(matrix.gemfile) }}
-
+            ${{ runner.os }}-${{ matrix.ruby }}-gems-${{ hashFiles(matrix.gemfile) }}
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
