@@ -67,6 +67,18 @@ strict validation use `strict: true`.
 CPF.valid?(number, strict: true)
 ```
 
+#### Detect type of document
+
+If you don't know if the number is a CPF or CNPJ, you can use `CPF_CNPJ` to
+detect the type of document.
+
+```ruby
+CPF_CNPJ.which(number)
+```
+
+If the number is valid, it will return a CPF/CNPJ instance. `nil` will be
+returned otherwise.
+
 ### Command-line
 
 This library gives you two binaries: `cpf` and `cnpj`.
