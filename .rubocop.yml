@@ -11,3 +11,10 @@ AllCops:
 
 Style/OptionalBooleanParameter:
   Enabled: false
+
+Style/OneClassPerFile:
+  Enabled: false
+
+Naming/ClassAndModuleCamelCase:
+  Exclude:
+    - lib/cpf_cnpj.rb
