@@ -14,7 +14,3 @@ Style/OptionalBooleanParameter:
 
 Style/OneClassPerFile:
   Enabled: false
-
-Naming/ClassAndModuleCamelCase:
-  Exclude:
-    - lib/cpf_cnpj.rb

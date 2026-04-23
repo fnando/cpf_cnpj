@@ -69,11 +69,11 @@ CPF.valid?(number, strict: true)
 
 #### Detect type of document
 
-If you don't know if the number is a CPF or CNPJ, you can use `CPF_CNPJ` to
+If you don't know if the number is a CPF or CNPJ, you can use `CpfCnpj` to
 detect the type of document.
 
 ```ruby
-CPF_CNPJ.which(number)
+CpfCnpj.which(number)
 ```
 
 If the number is valid, it will return a CPF/CNPJ instance. `nil` will be

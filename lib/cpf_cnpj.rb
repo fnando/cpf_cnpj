@@ -7,7 +7,7 @@ require "cpf_cnpj/version"
 require "cpf"
 require "cnpj"
 
-module CPF_CNPJ
+module CpfCnpj
   def self.which(input)
     if CPF.valid?(input)
       CPF.new(input)
@@ -16,3 +16,5 @@ module CPF_CNPJ
     end
   end
 end
+
+CPF_CNPJ = CpfCnpj
