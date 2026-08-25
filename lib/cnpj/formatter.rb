@@ -13,7 +13,7 @@ class CNPJ
     end
 
     def self.strip(number, strict = false)
-      number.to_s.gsub(strict ? STRICT_REGEX : LOOSE_REGEX, "")
+      number.to_s.upcase.gsub(strict ? STRICT_REGEX : LOOSE_REGEX, "")
     end
   end
 end

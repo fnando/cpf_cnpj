@@ -49,6 +49,17 @@ class CnpjTest < Minitest::Test
     assert_equal "54.550.752/0001-55", CNPJ.format("54550752000155")
   end
 
+  test "formats alphanumeric number" do
+    cnpj = CNPJ.new("12ABC34501DE35")
+
+    assert_equal "12.ABC.345/01DE-35", cnpj.formatted
+    assert_equal "12.ABC.345/01DE-35", CNPJ.format("12ABC34501DE35")
+  end
+
+  test "formats lowercase alphanumeric number" do
+    assert_equal "12.ABC.345/01DE-35", CNPJ.format("12abc34501de35")
+  end
+
   test "validates unformatted strings" do
     number = "54550752000155"
 
