@@ -83,6 +83,9 @@ class CnpjTest < Minitest::Test
     assert CNPJ.valid?("54550752000155", strict: true)
     assert CNPJ.valid?("12.ABC.345/01DE-35", strict: true)
     assert CNPJ.valid?("12ABC34501DE35", strict: true)
+    refute CNPJ.valid?("54.550-752/0001-55", strict: true)
+    refute CNPJ.valid?("54.550/752/0001-55", strict: true)
+    refute CNPJ.valid?("12.ABC-345/01DE-35", strict: true)
   end
 
   test "compare objects by their numeric value" do
